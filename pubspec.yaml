@@ -1,5 +1,6 @@
 name: dicoding_news_app
 description: A new Flutter project.
+# 10eb3f188a854b7c84ace080c6db4a6c
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -21,6 +22,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  http: ^0.12.2
   webview_flutter: ^0.3.22+1
   google_fonts: ^1.1.0
   flutter:
@@ -49,8 +51,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/articles.json
-    - assets/LibreFranklin-Regular.ttf
-    - assets/Merriweather-Regular.ttf
+    - assets/fonts/LibreFranklin-Regular.ttf
+    - assets/fonts/Merriweather-Regular.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
