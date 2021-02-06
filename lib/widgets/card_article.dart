@@ -1,5 +1,5 @@
 import 'package:dicoding_news_app/common/styles.dart';
-import 'package:dicoding_news_app/data/model/api_article.dart';
+import 'package:dicoding_news_app/data/model/article.dart';
 import 'package:flutter/material.dart';
 
 class CardArticle extends StatelessWidget {
