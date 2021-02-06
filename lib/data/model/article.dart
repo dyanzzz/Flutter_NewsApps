@@ -1,39 +1,45 @@
-import 'dart:convert';
+import 'package:dicoding_news_app/data/model/source.dart';
 
 class Article {
+  Article({
+    this.source,
+    this.author,
+    this.title,
+    this.description,
+    this.url,
+    this.urlToImage,
+    this.publishedAt,
+    this.content,
+  });
+
+  Source source;
   String author;
   String title;
   String description;
   String url;
   String urlToImage;
-  String publishedAt;
+  DateTime publishedAt;
   String content;
 
-  Article(
-      {this.author,
-      this.title,
-      this.description,
-      this.url,
-      this.urlToImage,
-      this.publishedAt,
-      this.content});
+  factory Article.fromJson(Map<String, dynamic> json) => Article(
+        source: Source.fromJson(json["source"]),
+        author: json["author"],
+        title: json["title"],
+        description: json["description"],
+        url: json["url"],
+        urlToImage: json["urlToImage"],
+        publishedAt: DateTime.parse(json["publishedAt"]),
+        content: json["content"] == null ? null : json["content"],
+      );
 
-  Article.fromJson(Map<String, dynamic> article) {
-    author = article['author'];
-    title = article['title'];
-    description = article['description'];
-    url = article['url'];
-    urlToImage = article['urlToImage'];
-    publishedAt = article['publishedAt'];
-    content = article['content'];
-  }
-}
-
-List<Article> parseArticles(String json) {
-  if (json == null) {
-    return [];
-  }
-
-  final List parsed = jsonDecode(json);
-  return parsed.map((json) => Article.fromJson(json)).toList();
+  Map<String, dynamic> toJson() => {
+        "source": source.toJson(),
+        "author": author,
+        "title": title,
+        "description": description,
+        "url": url,
+        "urlToImage": urlToImage,
+        "publishedAt": publishedAt.toIso8601String(),
+        "content": content == null ? null : content,
+      };
 }
