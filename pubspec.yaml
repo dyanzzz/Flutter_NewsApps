@@ -22,6 +22,10 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  intl: ^0.16.1
+  android_alarm_manager: ^0.4.5+11
+  flutter_local_notifications: ^1.4.4+4
+  rxdart: ^0.23.1
   provider: ^4.3.3
   http: ^0.12.2
   webview_flutter: ^0.3.22+1

@@ -1,3 +1,6 @@
+import 'package:dicoding_news_app/common/navigation.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class CustomScaffold extends StatelessWidget {
@@ -25,11 +28,18 @@ Widget _buildShortAppBar(BuildContext context) {
       mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
+            icon: defaultTargetPlatform == TargetPlatform.iOS
+                ? Icon(CupertinoIcons.back)
+                : Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigation.back();
+            }),
+        /*IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
-        ),
+        ),*/
         Padding(
           padding: const EdgeInsets.only(right: 16.0),
           child: Text(

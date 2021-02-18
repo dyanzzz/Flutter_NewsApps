@@ -1,3 +1,4 @@
+import 'package:dicoding_news_app/common/navigation.dart';
 import 'package:dicoding_news_app/data/model/article.dart';
 import 'package:dicoding_news_app/ui/article_web_view.dart';
 import 'package:flutter/material.dart';
@@ -56,8 +57,10 @@ class ArticleDetailPage extends StatelessWidget {
                     child: Text('Read more'),
                     onPressed: () {
                       //code
-                      Navigator.pushNamed(context, ArticleWebView.routeName,
-                          arguments: article.url);
+                      Navigation.intentWithData(
+                          ArticleWebView.routeName, article.url);
+                      /*Navigator.pushNamed(context, ArticleWebView.routeName,
+                          arguments: article.url);*/
                     },
                   )
                 ],

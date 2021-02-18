@@ -2,7 +2,11 @@ import 'dart:io';
 
 import 'package:dicoding_news_app/data/api/api_service.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
+import 'package:dicoding_news_app/provider/scheduling_provider.dart';
+import 'package:dicoding_news_app/ui/article_detail_page.dart';
 import 'package:dicoding_news_app/ui/article_list_page.dart';
+import 'package:dicoding_news_app/utils/background_service.dart';
+import 'package:dicoding_news_app/utils/notification_helper.dart';
 import 'package:dicoding_news_app/widgets/platform_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +21,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final NotificationHelper _notificationHelper = NotificationHelper();
+  final BackgroundService _service = BackgroundService();
+
   int _bottomNavIndex = 0;
   static const String _headlineText = 'Headline';
 
@@ -25,7 +32,10 @@ class _HomePageState extends State<HomePage> {
     ChangeNotifierProvider<NewsProvider>(
         create: (_) => NewsProvider(apiService: ApiService()),
         child: ArticleListPage()),
-    SettingsPage()
+    ChangeNotifierProvider<SchedulingProvider>(
+      create: (_) => SchedulingProvider(),
+      child: SettingsPage(),
+    )
   ];
 
   List<BottomNavigationBarItem> _bottomNavBarItems = [
@@ -36,6 +46,22 @@ class _HomePageState extends State<HomePage> {
         icon: Icon(Platform.isIOS ? CupertinoIcons.settings : Icons.settings),
         title: Text(SettingsPage.settingsTitle))
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    port.listen((message) async {
+      await _service.someTask();
+    });
+    _notificationHelper
+        .configureSelectNotificationSubject(ArticleDetailPage.routeName);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    selectNotificationSubject.close();
+  }
 
   void _onBottomNavTapped(int index) {
     setState(() {
