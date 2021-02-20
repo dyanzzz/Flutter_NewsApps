@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dicoding_news_app/common/styles.dart';
 import 'package:dicoding_news_app/data/api/api_service.dart';
 import 'package:dicoding_news_app/provider/news_provider.dart';
 import 'package:dicoding_news_app/provider/scheduling_provider.dart';
@@ -29,13 +30,9 @@ class _HomePageState extends State<HomePage> {
 
   //List<Widget> _listWidget = [ArticleListPage(), SettingsPage()];
   List<Widget> _listWidget = [
-    ChangeNotifierProvider<NewsProvider>(
-        create: (_) => NewsProvider(apiService: ApiService()),
-        child: ArticleListPage()),
-    ChangeNotifierProvider<SchedulingProvider>(
-      create: (_) => SchedulingProvider(),
-      child: SettingsPage(),
-    )
+    ArticleListPage(),
+    //BookmarksPage(),
+    SettingsPage(),
   ];
 
   List<BottomNavigationBarItem> _bottomNavBarItems = [

@@ -34,10 +34,7 @@ class ArticleDetailPage extends StatelessWidget {
                   Divider(color: Colors.grey),
                   Text(
                     article.title ?? "",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                   ),
                   Divider(
                     color: Colors.grey,

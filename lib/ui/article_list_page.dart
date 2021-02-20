@@ -40,6 +40,7 @@ class _ArticleListPageState extends State<ArticleListPage> {
         title: Text('News App'),
       ),
       body: _buildList(context),
+      backgroundColor: darkPrimaryColor,
     );
   }
 
